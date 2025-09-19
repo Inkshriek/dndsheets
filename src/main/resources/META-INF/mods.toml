@@ -6,8 +6,6 @@ license="Academic Free License v3.0"
 modId="dndsheets"
 version="1.0.0"
 displayName="D&D Sheets"
-displayURL="https://mcreator.net"
-credits="Created using mod maker MCreator - https://mcreator.net/about"
 authors="Hawthorn"
 
 [[dependencies.dndsheets]]

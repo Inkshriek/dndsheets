@@ -2,6 +2,15 @@
 **/build/
 !src/**/build/
 
+runClient/logs/
+runServer/logs/
+runClient/crash-reports/
+runServer/crash-reports/
+runClient/saves/
+runClient/world/
+runServer/saves/
+runServer/world/
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
