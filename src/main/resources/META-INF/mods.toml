@@ -7,6 +7,8 @@ modId="dndsheets"
 version="1.0.2"
 displayName="D&D Sheets"
 authors="Hawthorn, Cosmic"
+logoFile="logo.png"
+description="A mod to let you play D&D 5e in Minecraft."
 
 [[dependencies.dndsheets]]
     modId="minecraft"
