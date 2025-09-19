@@ -1,12 +1,12 @@
 modLoader="javafml"
 loaderVersion="[47,)"
-license="Academic Free License v3.0"
+license="MIT License"
 
 [[mods]]
 modId="dndsheets"
-version="1.0.0"
+version="1.0.2"
 displayName="D&D Sheets"
-authors="Hawthorn"
+authors="Hawthorn, Cosmic"
 
 [[dependencies.dndsheets]]
     modId="minecraft"
