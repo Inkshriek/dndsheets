@@ -277,6 +277,7 @@ public class RollIndex {
                 case 3 -> "Intelligence Check";
                 case 4 -> "Wisdom Check";
                 case 5 -> "Charisma Check";
+                case 6 -> "Initiative";
                 default -> result;
             };
             case 1 -> switch (index) {

@@ -34,6 +34,12 @@ public class RollEditorScreen extends AbstractContainerScreen<RollEditorMenu> {
 
 	public static int workingIndex = 0, workingCategory = 0;
 
+	private static final int X_OFFSET = 30;
+
+	private static final int EXPRESSION_Y = 37;
+	private static final int BUTTONS_Y = 82;
+	private static final int BUTTONS_SEPARATION = 22;
+
 	public RollEditorScreen(RollEditorMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
 		this.world = container.world;
@@ -41,8 +47,8 @@ public class RollEditorScreen extends AbstractContainerScreen<RollEditorMenu> {
 		this.y = container.y;
 		this.z = container.z;
 		this.entity = container.entity;
-		this.imageWidth = 176;
-		this.imageHeight = 166;
+		this.imageWidth = 200;
+		this.imageHeight = 175;
 	}
 
 	private static final ResourceLocation texture = new ResourceLocation("dndsheets:textures/screens/roll_editor.png");
@@ -84,8 +90,9 @@ public class RollEditorScreen extends AbstractContainerScreen<RollEditorMenu> {
 
 	@Override
 	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_expression"), 15, 16, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_insert_modifiers"), 15, 61, -12829636, false);
+		final int txtColor = 0xFFFFFF;
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_expression"), X_OFFSET, EXPRESSION_Y - 10, 0xFFFFFF, false);
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_insert_modifiers"), X_OFFSET, BUTTONS_Y - 10, 0xFFFFFF, false);
 	}
 
 	@Override
@@ -115,11 +122,14 @@ public class RollEditorScreen extends AbstractContainerScreen<RollEditorMenu> {
 		buttonList.add(btn);
 	}
 
-	private void initRollEditor() {
+	@Override
+	public void init() {
+		super.init();
+
 		JsonObject sheet = SheetLoader.getClientSheet();
 		SheetLoader.validateSheet(sheet);
 
-		rollExpression = new EditBox(this.font, this.leftPos + 16, this.topPos + 26, 118, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
+		rollExpression = new EditBox(this.font, this.leftPos + X_OFFSET, this.topPos + EXPRESSION_Y, 135, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
 			@Override
 			public void insertText(String text) {
 				super.insertText(text);
@@ -154,27 +164,19 @@ public class RollEditorScreen extends AbstractContainerScreen<RollEditorMenu> {
 			if (sheet.get(stringCategory) != null) {
 				JsonArray arr = sheet.get(stringCategory).getAsJsonArray();
 				String expression = "";
-				if (arr != null) expression = arr.get(workingIndex).getAsString();
+				if (arr != null && workingIndex < arr.size()) expression = arr.get(workingIndex).getAsString();
 				rollExpression.setValue(expression);
 			}
 
 		}
 
-		makeAdderButton("button:adder_str", 15, 79, 40, 20, adderButtons, rollExpression, " + $str", "str");
-		makeAdderButton("button:adder_dex", 60, 79, 40, 20, adderButtons, rollExpression, " + $dex", "dex");
-		makeAdderButton("button:adder_con", 105, 79, 40, 20, adderButtons, rollExpression, " + $con", "con");
-		makeAdderButton("button:adder_int", 15, 106, 40, 20, adderButtons, rollExpression, " + $int", "int");
-		makeAdderButton("button:adder_wis", 60, 106, 40, 20, adderButtons, rollExpression, " + $wis", "wis");
-		makeAdderButton("button:adder_cha", 105, 106, 40, 20, adderButtons, rollExpression, " + $cha", "cha");
-		makeAdderButton("button:adder_hprof", 15, 133, 77, 20, adderButtons, rollExpression, " + $hprof", "hprof");
-		makeAdderButton("button:adder_prof", 105, 133, 51, 20, adderButtons, rollExpression, " + $prof", "prof");
-	}
-
-	@Override
-	public void init() {
-		super.init();
-
-
-		initRollEditor();
+		makeAdderButton("button:adder_str", X_OFFSET, BUTTONS_Y, 40, 20, adderButtons, rollExpression, " + $str", "str");
+		makeAdderButton("button:adder_dex", X_OFFSET + 47, BUTTONS_Y, 40, 20, adderButtons, rollExpression, " + $dex", "dex");
+		makeAdderButton("button:adder_con", X_OFFSET + 94, BUTTONS_Y, 40, 20, adderButtons, rollExpression, " + $con", "con");
+		makeAdderButton("button:adder_int", X_OFFSET, BUTTONS_Y + BUTTONS_SEPARATION, 40, 20, adderButtons, rollExpression, " + $int", "int");
+		makeAdderButton("button:adder_wis", X_OFFSET + 47, BUTTONS_Y + BUTTONS_SEPARATION, 40, 20, adderButtons, rollExpression, " + $wis", "wis");
+		makeAdderButton("button:adder_cha", X_OFFSET + 94, BUTTONS_Y + BUTTONS_SEPARATION, 40, 20, adderButtons, rollExpression, " + $cha", "cha");
+		makeAdderButton("button:adder_hprof", X_OFFSET, BUTTONS_Y + BUTTONS_SEPARATION*2, 77, 20, adderButtons, rollExpression, " + $hprof", "hprof");
+		makeAdderButton("button:adder_prof", X_OFFSET + 83, BUTTONS_Y + BUTTONS_SEPARATION*2, 51, 20, adderButtons, rollExpression, " + $prof", "prof");
 	}
 }

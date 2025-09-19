@@ -190,6 +190,7 @@ public class SheetLoader {
 			checks.add("1d20 + $int");
 			checks.add("1d20 + $wis");
 			checks.add("1d20 + $cha");
+			checks.add("1d20 + $dex"); //Initiative
 			sheet.add("checks", checks);
 		}
 		if (!sheet.has("saves")) {
@@ -249,6 +250,7 @@ public class SheetLoader {
 		checks.add("1d20 + $int");
 		checks.add("1d20 + $wis");
 		checks.add("1d20 + $cha");
+		checks.add("1d20 + $dex"); //Initiative
 
 		JsonArray saves = new JsonArray();
 		saves.add("1d20 + $str");

@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import net.hawthorn.dndsheets.DndsheetsMod;
 import net.hawthorn.dndsheets.RollIndex;
 import net.hawthorn.dndsheets.SheetLoader;
+import net.hawthorn.dndsheets.client.gui.components.AdjustableImageButton;
 import net.hawthorn.dndsheets.client.gui.components.RollScrollWidget;
 import net.hawthorn.dndsheets.init.DndsheetsModKeyMappings;
 import net.hawthorn.dndsheets.network.AdvancedRollEditorOpenMessage;
@@ -70,9 +71,12 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 	List<ImageButton> saveEditButtons = new ArrayList<>();
 	List<ImageButton> skillEditButtons = new ArrayList<>();
 
-	Button mainTab;
-	Button skillsTab;
-	Button attacksTab;
+	ImageButton initiativeButton;
+	ImageButton initiativeEditButton;
+
+	AdjustableImageButton mainTab;
+	AdjustableImageButton skillsTab;
+	AdjustableImageButton attacksTab;
 	ImageButton editToggle;
 
 	Checkbox dsaves_success_1;
@@ -115,6 +119,9 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 
 	private final int HITDICE_OFFSET_X = 125;
 	private final int HITDICE_OFFSET_Y = 125;
+
+	private final int INITIATIVE_OFFSET_X = 304;
+	private final int INITIATIVE_OFFSET_Y = 165;
 
 	private final int DEATHSAVES_OFFSET_X = 125;
 	private final int DEATHSAVES_OFFSET_Y = 125;
@@ -335,7 +342,8 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_race"), RACE_OFFSET_X, RACE_OFFSET_Y - 10, lightColor, false);
 				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_background"), BACKG_OFFSET_X, BACKG_OFFSET_Y - 10, lightColor, false);
 				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_hitdice"), HITDICE_OFFSET_X, HITDICE_OFFSET_Y - 10, lightColor, false);
-				//guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_deathsaves"), DEATHSAVES_OFFSET_X, DEATHSAVES_OFFSET_Y - 10, -12829636, false);
+
+				guiGraphics.drawCenteredString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_initiative"), INITIATIVE_OFFSET_X + 8, INITIATIVE_OFFSET_Y - 15, lightColor);
 				break;
 			case SKILLS:
 				//STRENGTH
@@ -393,6 +401,8 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 	 * <p>This updates the active and inactive elements of the screen in accordance with the panelStatus.</p>
 	 */
 	public void updateTabs() {
+		boolean isActive;
+
 		//Tab Buttons
 		Button activeTab;
 		switch (panelActive) {
@@ -408,17 +418,19 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 			default:
 				return;
 		}
-		List<Button> tabButtons = new ArrayList<>();
+		List<AdjustableImageButton> tabButtons = new ArrayList<>();
 		Collections.addAll(tabButtons, mainTab, skillsTab, attacksTab);
 		tabButtons.forEach((e) -> {
 			if (e != activeTab) {
-				e.setY(this.topPos - 10);
+				e.setY(this.topPos - 12);
 				e.setHeight(15);
+				e.setImage( new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 0, 0, 15, 40, 30);
 				e.active = true;
 			}
 			else {
-				e.setY(this.topPos - 15);
+				e.setY(this.topPos - 17);
 				e.setHeight(20);
+				e.setImage( new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton_active.png"), 0, 0, 20, 40, 40);
 				e.active = false;
 			}
 		});
@@ -442,38 +454,45 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 		});
 
 		//Main Tab
-		boolean active = panelActive == PanelStatus.MAIN;
-		hitPoints.active = active;
-		hitPointsTemp.active = active;
-		hitPointsMax.active = active;
-		armorClass.active = active;
-		characterRace.active = active;
-		characterClass.active = active;
-		background.active = active;
-		speed.active = active;
-		proficiency.active = active;
-		hitDice.active = active;
-		hitDiceTypes.active = active;
+		isActive = panelActive == PanelStatus.MAIN;
+		hitPoints.active = isActive;
+		hitPointsTemp.active = isActive;
+		hitPointsMax.active = isActive;
+		armorClass.active = isActive;
+		characterRace.active = isActive;
+		characterClass.active = isActive;
+		background.active = isActive;
+		speed.active = isActive;
+		proficiency.active = isActive;
+		hitDice.active = isActive;
+		hitDiceTypes.active = isActive;
+
+		isActive = panelActive == PanelStatus.MAIN && !editMode;
+		initiativeButton.active = isActive;
+		initiativeButton.visible = isActive;
+		isActive = panelActive == PanelStatus.MAIN && editMode;
+		initiativeEditButton.active = isActive;
+		initiativeEditButton.visible = isActive;
 
 		//Skill Tab
 		skillButtons.forEach((e) -> {
-			boolean isActive = panelActive == PanelStatus.SKILLS && !editMode;
-            e.active = isActive;
-			e.visible = isActive;
+			boolean isActiveL = panelActive == PanelStatus.SKILLS && !editMode;
+            e.active = isActiveL;
+			e.visible = isActiveL;
 		});
 		skillEditButtons.forEach((e) -> {
-			boolean isActive = panelActive == PanelStatus.SKILLS && editMode;
-			e.active = isActive;
-			e.visible = isActive;
+			boolean isActiveL = panelActive == PanelStatus.SKILLS && editMode;
+			e.active = isActiveL;
+			e.visible = isActiveL;
 		});
 
 		//Attack Tab
-		active = panelActive == PanelStatus.ATTACKS;
-		attackRolls.setActive(active);
+		isActive = panelActive == PanelStatus.ATTACKS;
+		attackRolls.setActive(isActive);
 		attackRolls.setEditMode(editMode);
 
-		addButton.active = active;
-		addButton.visible = active;
+		addButton.active = isActive;
+		addButton.visible = isActive;
 	}
 
 	/**
@@ -1065,6 +1084,21 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 		hitDice.setMaxLength(2);
 		guistate.put("text:hitdice", hitDice);
 		this.addWidget(this.hitDice);
+
+		initiativeButton = new ImageButton(this.leftPos + INITIATIVE_OFFSET_X, this.topPos + INITIATIVE_OFFSET_Y, 16, 16, 0, 0, 16, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_d20.png"), 16, 32, e -> {
+			sendRoll(0, 6, 0);
+		});
+		guistate.put("button:roll_init", initiativeButton);
+		this.addRenderableWidget(initiativeButton);
+
+		initiativeEditButton = new ImageButton(this.leftPos + INITIATIVE_OFFSET_X, this.topPos + INITIATIVE_OFFSET_Y, 16, 16, 0, 0, 16, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_d20_edit.png"), 16, 32, e -> {
+			CharacterSheetSaveProcedure.execute(guistate);
+			RollEditorScreen.workingCategory = 0;
+			RollEditorScreen.workingIndex = 6;
+			DndsheetsMod.PACKET_HANDLER.sendToServer(new RollEditorOpenMessage());
+		});
+		guistate.put("button:roll_init_edit", initiativeEditButton);
+		this.addRenderableWidget(initiativeEditButton);
 	}
 
 	private void initSkillPanel() {
@@ -1156,25 +1190,25 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 	public void init() {
 		super.init();
 
-		mainTab = Button.builder(Component.translatable("gui.dndsheets.character_sheet.main_tab"), e -> {
+		mainTab = new AdjustableImageButton(this.leftPos + 15, this.topPos - 12, 40, 15, 0, 0, 15, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 40, 30, e -> {
 			panelActive = PanelStatus.MAIN;
 			updateTabs();
-		}).bounds(this.leftPos + 20, this.topPos - 12, 40, 15).build();
-		guistate.put("button:main_tab", mainTab);
+
+		}, Component.translatable("gui.dndsheets.character_sheet.main_tab"));
 		this.addRenderableWidget(mainTab);
 
-		skillsTab = Button.builder(Component.translatable("gui.dndsheets.character_sheet.skills_tab"), e -> {
+		skillsTab = new AdjustableImageButton(this.leftPos + 55, this.topPos - 12, 40, 15, 0, 0, 15, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 40, 30, e -> {
 			panelActive = PanelStatus.SKILLS;
 			updateTabs();
-		}).bounds(this.leftPos + 60, this.topPos - 12, 40, 15).build();
-		guistate.put("button:skills_tab", skillsTab);
+
+		}, Component.translatable("gui.dndsheets.character_sheet.skills_tab"));
 		this.addRenderableWidget(skillsTab);
 
-		attacksTab = Button.builder(Component.translatable("gui.dndsheets.character_sheet.attacks_tab"), e -> {
+		attacksTab = new AdjustableImageButton(this.leftPos + 95, this.topPos - 12, 40, 15, 0, 0, 15, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 40, 30, e -> {
 			panelActive = PanelStatus.ATTACKS;
 			updateTabs();
-		}).bounds(this.leftPos + 100, this.topPos - 12, 40, 15).build();
-		guistate.put("button:attacks_tab", attacksTab);
+
+		}, Component.translatable("gui.dndsheets.character_sheet.attacks_tab"));
 		this.addRenderableWidget(attacksTab);
 
 		ImageButton editToggle = new ImageButton(this.leftPos - 6, this.topPos + 192, 16, 16, 0, 0, 16, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_editmode.png"), 16, 32, e -> {
