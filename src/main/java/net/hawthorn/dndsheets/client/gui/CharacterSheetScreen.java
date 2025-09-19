@@ -129,20 +129,11 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 	 */
 	private final int SKILL_SEPARATION = 20;
 
-	private final int SKILL_STR_OFFSET_X = 145;
-	private final int SKILL_STR_OFFSET_Y = 15;
+	private final int SKILL_LIST1_OFFSET_X = 135;
+	private final int SKILL_LIST1_OFFSET_Y = 15;
 
-	private final int SKILL_DEX_OFFSET_X = 145;
-	private final int SKILL_DEX_OFFSET_Y = 35;
-
-	private final int SKILL_INT_OFFSET_X = 145;
-	private final int SKILL_INT_OFFSET_Y = 95;
-
-	private final int SKILL_WIS_OFFSET_X = 255;
-	private final int SKILL_WIS_OFFSET_Y = 15;
-
-	private final int SKILL_CHA_OFFSET_X = 255;
-	private final int SKILL_CHA_OFFSET_Y = 115;
+	private final int SKILL_LIST2_OFFSET_X = 255;
+	private final int SKILL_LIST2_OFFSET_Y = 15;
 
 
 	public enum PanelStatus {
@@ -348,32 +339,32 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 				break;
 			case SKILLS:
 				//STRENGTH
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_athletics"), SKILL_STR_OFFSET_X, SKILL_STR_OFFSET_Y, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_athletics"), SKILL_LIST1_OFFSET_X, SKILL_LIST1_OFFSET_Y, lightColor, false);
 
 				//DEXTERITY
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_acrobatics"), SKILL_DEX_OFFSET_X, SKILL_DEX_OFFSET_Y, darkColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_sleightofhand"), SKILL_DEX_OFFSET_X, SKILL_DEX_OFFSET_Y + SKILL_SEPARATION, darkColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_stealth"), SKILL_DEX_OFFSET_X, SKILL_DEX_OFFSET_Y + SKILL_SEPARATION*2, darkColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_acrobatics"), SKILL_LIST1_OFFSET_X, SKILL_LIST1_OFFSET_Y + SKILL_SEPARATION, darkColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_sleightofhand"), SKILL_LIST1_OFFSET_X, SKILL_LIST1_OFFSET_Y + SKILL_SEPARATION*2, darkColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_stealth"), SKILL_LIST1_OFFSET_X, SKILL_LIST1_OFFSET_Y + SKILL_SEPARATION*3, darkColor, false);
 
 				//INTELLIGENCE
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_arcana"), SKILL_INT_OFFSET_X, SKILL_INT_OFFSET_Y, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_history"), SKILL_INT_OFFSET_X, SKILL_INT_OFFSET_Y + SKILL_SEPARATION, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_investigation"), SKILL_INT_OFFSET_X, SKILL_INT_OFFSET_Y + SKILL_SEPARATION*2, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_nature"), SKILL_INT_OFFSET_X, SKILL_INT_OFFSET_Y + SKILL_SEPARATION*3, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_religion"), SKILL_INT_OFFSET_X, SKILL_INT_OFFSET_Y + SKILL_SEPARATION*4, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_arcana"), SKILL_LIST1_OFFSET_X, SKILL_LIST1_OFFSET_Y + SKILL_SEPARATION*4, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_history"), SKILL_LIST1_OFFSET_X, SKILL_LIST1_OFFSET_Y + SKILL_SEPARATION*5, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_investigation"), SKILL_LIST1_OFFSET_X, SKILL_LIST1_OFFSET_Y + SKILL_SEPARATION*6, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_nature"), SKILL_LIST1_OFFSET_X, SKILL_LIST1_OFFSET_Y + SKILL_SEPARATION*7, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_religion"), SKILL_LIST1_OFFSET_X, SKILL_LIST1_OFFSET_Y + SKILL_SEPARATION*8, lightColor, false);
 
 				//WISDOM
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_animalhandling"), SKILL_WIS_OFFSET_X, SKILL_WIS_OFFSET_Y, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_insight"), SKILL_WIS_OFFSET_X, SKILL_WIS_OFFSET_Y + SKILL_SEPARATION, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_medicine"), SKILL_WIS_OFFSET_X, SKILL_WIS_OFFSET_Y + SKILL_SEPARATION*2, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_perception"), SKILL_WIS_OFFSET_X, SKILL_WIS_OFFSET_Y + SKILL_SEPARATION*3, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_survival"), SKILL_WIS_OFFSET_X, SKILL_WIS_OFFSET_Y + SKILL_SEPARATION*4, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_animalhandling"), SKILL_LIST2_OFFSET_X, SKILL_LIST2_OFFSET_Y, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_insight"), SKILL_LIST2_OFFSET_X, SKILL_LIST2_OFFSET_Y + SKILL_SEPARATION, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_medicine"), SKILL_LIST2_OFFSET_X, SKILL_LIST2_OFFSET_Y + SKILL_SEPARATION*2, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_perception"), SKILL_LIST2_OFFSET_X, SKILL_LIST2_OFFSET_Y + SKILL_SEPARATION*3, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_survival"), SKILL_LIST2_OFFSET_X, SKILL_LIST2_OFFSET_Y + SKILL_SEPARATION*4, lightColor, false);
 
 				//CHARISMA
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_deception"), SKILL_CHA_OFFSET_X, SKILL_CHA_OFFSET_Y, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_intimidation"), SKILL_CHA_OFFSET_X, SKILL_CHA_OFFSET_Y + SKILL_SEPARATION, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_performance"), SKILL_CHA_OFFSET_X, SKILL_CHA_OFFSET_Y + SKILL_SEPARATION*2, lightColor, false);
-				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_persuasion"), SKILL_CHA_OFFSET_X, SKILL_CHA_OFFSET_Y + SKILL_SEPARATION*3, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_deception"), SKILL_LIST2_OFFSET_X, SKILL_LIST2_OFFSET_Y + SKILL_SEPARATION*5, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_intimidation"), SKILL_LIST2_OFFSET_X, SKILL_LIST2_OFFSET_Y + SKILL_SEPARATION*6, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_performance"), SKILL_LIST2_OFFSET_X, SKILL_LIST2_OFFSET_Y + SKILL_SEPARATION*7, lightColor, false);
+				guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.character_sheet.label_skill_persuasion"), SKILL_LIST2_OFFSET_X, SKILL_LIST2_OFFSET_Y + SKILL_SEPARATION*8, lightColor, false);
 				break;
 		}
 
@@ -783,7 +774,7 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 		 */
 
 		int checkBtnOffset = -42;
-		int saveBtnOffset = -22;
+		int saveBtnOffset = -24;
 
 		//STR
 		makeRollButton("button:roll_str", ABILITY_OFFSET_X+checkBtnOffset, ABILITY_OFFSET_Y, 0, 0, false, checkButtons, checkEditButtons);
@@ -1085,32 +1076,32 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 		int skillBtnOffsetY = -5;
 
 		//STR
-		makeRollButton("button:roll_athletics", SKILL_STR_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_STR_OFFSET_Y, 2, 0, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_athletics", SKILL_LIST1_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST1_OFFSET_Y, 2, 0, false, skillButtons, skillEditButtons);
 
 		//DEX
-		makeRollButton("button:roll_acrobatics", SKILL_DEX_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_DEX_OFFSET_Y, 2, 1, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_sleightofhand", SKILL_DEX_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_DEX_OFFSET_Y+SKILL_SEPARATION, 2, 2, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_stealth", SKILL_DEX_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_DEX_OFFSET_Y+SKILL_SEPARATION*2, 2, 3, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_acrobatics", SKILL_LIST1_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST1_OFFSET_Y+SKILL_SEPARATION, 2, 1, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_sleightofhand", SKILL_LIST1_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST1_OFFSET_Y+SKILL_SEPARATION*2, 2, 2, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_stealth", SKILL_LIST1_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST1_OFFSET_Y+SKILL_SEPARATION*3, 2, 3, false, skillButtons, skillEditButtons);
 
 		//INT
-		makeRollButton("button:roll_arcana", SKILL_INT_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_INT_OFFSET_Y, 2, 4, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_history", SKILL_INT_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_INT_OFFSET_Y+SKILL_SEPARATION, 2, 5, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_investigation", SKILL_INT_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_INT_OFFSET_Y+SKILL_SEPARATION*2, 2, 6, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_nature", SKILL_INT_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_INT_OFFSET_Y+SKILL_SEPARATION*3, 2, 7, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_religion", SKILL_INT_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_INT_OFFSET_Y+SKILL_SEPARATION*4, 2, 8, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_arcana", SKILL_LIST1_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST1_OFFSET_Y+SKILL_SEPARATION*4, 2, 4, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_history", SKILL_LIST1_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST1_OFFSET_Y+SKILL_SEPARATION*5, 2, 5, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_investigation", SKILL_LIST1_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST1_OFFSET_Y+SKILL_SEPARATION*6, 2, 6, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_nature", SKILL_LIST1_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST1_OFFSET_Y+SKILL_SEPARATION*7, 2, 7, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_religion", SKILL_LIST1_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST1_OFFSET_Y+SKILL_SEPARATION*8, 2, 8, false, skillButtons, skillEditButtons);
 
 		//WIS
-		makeRollButton("button:roll_animalhandling", SKILL_WIS_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_WIS_OFFSET_Y, 2, 9, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_insight", SKILL_WIS_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_WIS_OFFSET_Y+SKILL_SEPARATION, 2, 10, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_medicine", SKILL_WIS_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_WIS_OFFSET_Y+SKILL_SEPARATION*2, 2, 11, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_perception", SKILL_WIS_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_WIS_OFFSET_Y+SKILL_SEPARATION*3, 2, 12, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_survival", SKILL_WIS_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_WIS_OFFSET_Y+SKILL_SEPARATION*4, 2, 13, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_animalhandling", SKILL_LIST2_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST2_OFFSET_Y, 2, 9, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_insight", SKILL_LIST2_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST2_OFFSET_Y+SKILL_SEPARATION, 2, 10, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_medicine", SKILL_LIST2_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST2_OFFSET_Y+SKILL_SEPARATION*2, 2, 11, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_perception", SKILL_LIST2_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST2_OFFSET_Y+SKILL_SEPARATION*3, 2, 12, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_survival", SKILL_LIST2_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST2_OFFSET_Y+SKILL_SEPARATION*4, 2, 13, false, skillButtons, skillEditButtons);
 
 		//CHA
-		makeRollButton("button:roll_deception", SKILL_CHA_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_CHA_OFFSET_Y, 2, 14, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_intimidation", SKILL_CHA_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_CHA_OFFSET_Y+SKILL_SEPARATION, 2, 15, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_performance", SKILL_CHA_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_CHA_OFFSET_Y+SKILL_SEPARATION*2, 2, 16, false, skillButtons, skillEditButtons);
-		makeRollButton("button:roll_persuasion", SKILL_CHA_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_CHA_OFFSET_Y+SKILL_SEPARATION*3, 2, 17, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_deception", SKILL_LIST2_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST2_OFFSET_Y+SKILL_SEPARATION*5, 2, 14, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_intimidation", SKILL_LIST2_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST2_OFFSET_Y+SKILL_SEPARATION*6, 2, 15, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_performance", SKILL_LIST2_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST2_OFFSET_Y+SKILL_SEPARATION*7, 2, 16, false, skillButtons, skillEditButtons);
+		makeRollButton("button:roll_persuasion", SKILL_LIST2_OFFSET_X+skillBtnOffsetX, skillBtnOffsetY+SKILL_LIST2_OFFSET_Y+SKILL_SEPARATION*8, 2, 17, false, skillButtons, skillEditButtons);
 
 	}
 

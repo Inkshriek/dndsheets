@@ -43,5 +43,15 @@
     "1d20 + $cha",
     "1d20 + $cha"
   ],
-  "attacks": []
+  "attacks": [],
+  "characterClass": "",
+  "characterRace": "",
+  "background": "",
+  "hitPoints": "",
+  "hitPointsMax": "",
+  "hitPointsTemp": "",
+  "armorClass": "",
+  "speed": "",
+  "hitDiceTypes": "",
+  "hitDice": ""
 }
