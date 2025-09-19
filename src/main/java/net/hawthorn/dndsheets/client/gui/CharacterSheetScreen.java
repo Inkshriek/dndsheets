@@ -1159,21 +1159,21 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 		mainTab = Button.builder(Component.translatable("gui.dndsheets.character_sheet.main_tab"), e -> {
 			panelActive = PanelStatus.MAIN;
 			updateTabs();
-		}).bounds(this.leftPos + 0, this.topPos - 10, 40, 15).build();
+		}).bounds(this.leftPos + 20, this.topPos - 12, 40, 15).build();
 		guistate.put("button:main_tab", mainTab);
 		this.addRenderableWidget(mainTab);
 
 		skillsTab = Button.builder(Component.translatable("gui.dndsheets.character_sheet.skills_tab"), e -> {
 			panelActive = PanelStatus.SKILLS;
 			updateTabs();
-		}).bounds(this.leftPos + 40, this.topPos - 10, 40, 15).build();
+		}).bounds(this.leftPos + 60, this.topPos - 12, 40, 15).build();
 		guistate.put("button:skills_tab", skillsTab);
 		this.addRenderableWidget(skillsTab);
 
 		attacksTab = Button.builder(Component.translatable("gui.dndsheets.character_sheet.attacks_tab"), e -> {
 			panelActive = PanelStatus.ATTACKS;
 			updateTabs();
-		}).bounds(this.leftPos + 80, this.topPos - 10, 40, 15).build();
+		}).bounds(this.leftPos + 100, this.topPos - 12, 40, 15).build();
 		guistate.put("button:attacks_tab", attacksTab);
 		this.addRenderableWidget(attacksTab);
 
