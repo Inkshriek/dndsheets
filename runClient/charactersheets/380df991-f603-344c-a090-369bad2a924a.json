@@ -43,7 +43,33 @@
     "1d20 + $cha",
     "1d20 + $cha"
   ],
-  "attacks": [],
+  "attacks": [
+    {
+      "name": "New Attack",
+      "rolls": [
+        [
+          {
+            "context": "Damage Roll",
+            "expression": "2d6 + $str"
+          },
+          {
+            "context": "",
+            "expression": ""
+          }
+        ],
+        [
+          {
+            "context": "Attack Roll",
+            "expression": "1d20 + $str + $prof"
+          },
+          {
+            "context": "",
+            "expression": ""
+          }
+        ]
+      ]
+    }
+  ],
   "characterClass": "",
   "characterRace": "",
   "background": "",
