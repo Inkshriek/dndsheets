@@ -1,0 +1,94 @@
+plugins {
+    id 'eclipse'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+}
+
+version = '1.0.1'
+group = 'net.hawthorn.dndsheets'
+archivesBaseName = 'dndsheets'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'parchment', version: '2023.09.03-1.20.1'
+
+
+    copyIdeResources = true
+
+    runs {
+        client {
+            workingDirectory project.file('runClient')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                dndsheets {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('runServer')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                dndsheets {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        name = "locallib"
+        dir "../~lib"
+    }
+}
+
+configurations {
+    shade
+    implementation.extendsFrom shade
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
+    // https://mvnrepository.com/artifact/io.github.tfriedrichs/dicebot
+    minecraftLibrary 'io.github.tfriedrichs:dicebot:1.0.0'
+    //minecraftLibrary 'org.antlr:antlr4-runtime:4.7.2'
+    shade 'io.github.tfriedrichs:dicebot:1.0.0'
+    //shade 'org.antlr:antlr4-runtime:4.7.2'
+
+
+}
+
+jar {
+    archiveClassifier = 'slim'
+
+}
+
+shadowJar {
+    archiveClassifier = ''
+    configurations = [project.configurations.shade]
+    relocate 'io.github.tfriedrichs:dicebot', "${project.group}.relocated.dicebot"
+    //relocate 'org.antlr:antlr4-runtime', "${project.group}.relocated.antlr4-runtime"
+    finalizedBy 'reobfShadowJar'
+}
+
+assemble.dependsOn shadowJar
+
+reobf {
+    shadowJar {}
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+

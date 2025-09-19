@@ -1,0 +1,12 @@
+{
+  "_fv": 57,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "H",
+    "keyBindingName": "Character Sheet",
+    "keyBindingCategoryKey": "misc",
+    "onKeyPressed": {
+      "name": "CharacterOnKeyPressed"
+    }
+  }
+}

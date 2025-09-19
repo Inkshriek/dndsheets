@@ -1,0 +1,52 @@
+{
+  "_fv": 57,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 176,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "button",
+        "data": {
+          "name": "button_yes",
+          "text": "yes",
+          "isUndecorated": false,
+          "onClick": {
+            "name": "Test"
+          },
+          "width": 40,
+          "height": 20,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "name": "button_hh",
+          "text": "hh",
+          "isUndecorated": false,
+          "width": 35,
+          "height": 20,
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "onOpen": {
+      "name": "Test"
+    },
+    "gridSettings": {
+      "sx": 18,
+      "sy": 18,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": false
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "dice": {
+    "subtitle": "subtitles.dice",
+    "sounds": [
+      {
+        "name": "dndsheets:dice",
+        "stream": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "dice": {
+    "subtitle": "subtitles.dice",
+    "sounds": [
+      {
+        "name": "fragments_in_time:dice",
+        "stream": false
+      }
+    ]
+  }
+}

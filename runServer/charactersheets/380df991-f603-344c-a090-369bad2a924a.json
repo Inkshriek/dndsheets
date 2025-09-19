@@ -1,0 +1,83 @@
+{
+  "characterName": "Rizk",
+  "strength": "10",
+  "dexterity": "10",
+  "constitution": "10",
+  "intelligence": "10",
+  "wisdom": "10",
+  "charisma": "10",
+  "proficiencyBonus": "2",
+  "checks": [
+    "1d20 + $str",
+    "1d20 + $dex",
+    "1d20 + $con",
+    "1d20 + $int",
+    "1d20 + $wis",
+    "1d20 + $cha"
+  ],
+  "saves": [
+    "1d20 + $str",
+    "1d20 + $dex",
+    "1d20 + $con",
+    "1d20 + $int",
+    "1d20 + $wis",
+    "1d20 + $cha"
+  ],
+  "skills": [
+    "1d20 + $str",
+    "1d20 + $dex",
+    "1d20 + $dex",
+    "1d20 + $dex",
+    "1d20 + $int",
+    "1d20 + $int",
+    "1d20 + $int",
+    "1d20 + $int",
+    "1d20 + $int",
+    "1d20 + $wis",
+    "1d20 + $wis",
+    "1d20 + $wis",
+    "1d20 + $wis",
+    "1d20 + $wis",
+    "1d20 + $cha",
+    "1d20 + $cha",
+    "1d20 + $cha",
+    "1d20 + $cha"
+  ],
+  "attacks": [
+    {
+      "name": "New Attack",
+      "rolls": [
+        [
+          {
+            "context": "Damage Roll",
+            "expression": "2d6 + $str"
+          },
+          {
+            "context": "",
+            "expression": ""
+          }
+        ],
+        [
+          {
+            "context": "Attack Roll",
+            "expression": "1d20 + $str + $prof"
+          },
+          {
+            "context": "",
+            "expression": ""
+          }
+        ]
+      ]
+    }
+  ],
+  "characterClass": "",
+  "characterRace": "",
+  "background": "",
+  "hitPoints": "",
+  "hitPointsMax": "",
+  "hitPointsTemp": "",
+  "armorClass": "",
+  "speed": "",
+  "hitDiceTypes": "",
+  "hitDice": ""
+}
