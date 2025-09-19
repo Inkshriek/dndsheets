@@ -1,17 +1,3 @@
-/**
- * The code of this mod element is always locked.
- *
- * You can register new events in this class too.
- *
- * If you want to make a plain independent class, create it using
- * Project Browser -> New... and make sure to make the class
- * outside net.mcreator.fragmentsintime as this package is managed by MCreator.
- *
- * If you change workspace package, modid or prefix, you will need
- * to manually adapt this file to these changes or remake it.
- *
- * This class will be added in the mod root package.
-*/
 package net.hawthorn.dndsheets;
 
 import com.google.gson.*;
@@ -78,7 +64,7 @@ public class SheetLoader {
 		};
 
 		try {
-			Supplier<ServerPlayer> serverPlayer = () -> entity.getServer().getPlayerList().getPlayer(uuid);
+			Supplier<ServerPlayer> serverPlayer = () -> (ServerPlayer) entity;
 			byte[] data = SheetLoader.getServerSheet(uuidString).toString().getBytes();
 			DndsheetsMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(serverPlayer), new SheetClientMessage(data));
 			System.out.println("are you winning son");

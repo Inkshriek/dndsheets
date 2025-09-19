@@ -1,7 +1,4 @@
 
-/*
- *	MCreator note: This file will be REGENERATED on each build.
- */
 package net.hawthorn.dndsheets.init;
 
 import net.hawthorn.dndsheets.network.CharacterSheetOpenMessage;
@@ -20,7 +17,7 @@ import net.hawthorn.dndsheets.DndsheetsMod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
 public class DndsheetsModKeyMappings {
-	public static final KeyMapping CHARACTER = new KeyMapping("key.dndsheets.character", GLFW.GLFW_KEY_H, "key.categories.misc") {
+	public static final KeyMapping CHARACTER = new KeyMapping("key.dndsheets.character", GLFW.GLFW_KEY_H, "key.categories.dndsheets") {
 		private boolean isDownOld = false;
 
 		@Override

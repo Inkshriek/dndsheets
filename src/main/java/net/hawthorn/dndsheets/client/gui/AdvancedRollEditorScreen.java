@@ -32,9 +32,13 @@ public class AdvancedRollEditorScreen extends AbstractContainerScreen<AdvancedRo
 	EditBox rollExpression1, rollExpression2, rollContext1, rollContext2;
 	List<Button> adderButtons = new ArrayList<>();
 
-	private static final int FIRSTROLL_X = 15;
-	private static final int SECONDROLL_X = 170;
-	private static final int SEPARATION = 36;
+	private static final int FIRSTROLL_X = 29;
+	private static final int SECONDROLL_X = 185;
+
+	private static final int CONTEXT_Y = 52;
+	private static final int EXPRESSION_Y = 84;
+	private static final int BUTTONS_Y = 130;
+	private static final int BUTTONS_SEPARATION = 22;
 
 	public static int workingIndex = 0, workingCategory = 0, workingSubIndex = 0;
 
@@ -45,8 +49,8 @@ public class AdvancedRollEditorScreen extends AbstractContainerScreen<AdvancedRo
 		this.y = container.y;
 		this.z = container.z;
 		this.entity = container.entity;
-		this.imageWidth = 325;
-		this.imageHeight = 200;
+		this.imageWidth = 350;
+		this.imageHeight = 224;
 	}
 
 	private static final ResourceLocation texture = new ResourceLocation("dndsheets:textures/screens/advanced_roll_editor.png");
@@ -103,14 +107,15 @@ public class AdvancedRollEditorScreen extends AbstractContainerScreen<AdvancedRo
 
 	@Override
 	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_editor_1"), FIRSTROLL_X, 10, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_editor_2"), SECONDROLL_X, 10, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_context"), FIRSTROLL_X, SEPARATION - 10, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_expression"), FIRSTROLL_X, SEPARATION*2 - 10, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_insert_modifiers"), FIRSTROLL_X, SEPARATION*3 - 10, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_context"), SECONDROLL_X, SEPARATION - 10, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_expression"), SECONDROLL_X, SEPARATION*2 - 10, -12829636, false);
-		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_insert_modifiers"), SECONDROLL_X, SEPARATION*3 - 10, -12829636, false);
+		final int txtColor = 0xFFFFFF;
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_editor_1"), FIRSTROLL_X, 26, txtColor, false);
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_editor_2"), SECONDROLL_X, 26, txtColor, false);
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_context"), FIRSTROLL_X, CONTEXT_Y - 10, txtColor, false);
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_expression"), FIRSTROLL_X, EXPRESSION_Y - 10, txtColor, false);
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_insert_modifiers"), FIRSTROLL_X, BUTTONS_Y - 10, txtColor, false);
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_context"), SECONDROLL_X, CONTEXT_Y - 10, txtColor, false);
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_roll_expression"), SECONDROLL_X, EXPRESSION_Y - 10, txtColor, false);
+		guiGraphics.drawString(this.font, Component.translatable("gui.dndsheets.roll_editor.label_insert_modifiers"), SECONDROLL_X, BUTTONS_Y - 10, txtColor, false);
 	}
 
 	@Override
@@ -144,12 +149,12 @@ public class AdvancedRollEditorScreen extends AbstractContainerScreen<AdvancedRo
 		JsonObject sheet = SheetLoader.getClientSheet();
 		SheetLoader.validateSheet(sheet);
 
-		rollExpression1 = new EditBox(this.font, this.leftPos + FIRSTROLL_X, this.topPos + SEPARATION*2, 118, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
+		rollExpression1 = new EditBox(this.font, this.leftPos + FIRSTROLL_X, this.topPos + EXPRESSION_Y, 134, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
 			@Override
 			public void insertText(String text) {
 				super.insertText(text);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollexpression").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_expression_suggestion").getString());
 				else
 					setSuggestion(null);
 			}
@@ -158,22 +163,22 @@ public class AdvancedRollEditorScreen extends AbstractContainerScreen<AdvancedRo
 			public void moveCursorTo(int pos) {
 				super.moveCursorTo(pos);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollexpression").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_expression_suggestion").getString());
 				else
 					setSuggestion(null);
 			}
 		};
-		rollExpression1.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollexpression").getString());
+		rollExpression1.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_expression_suggestion").getString());
 		rollExpression1.setMaxLength(50);
 		guistate.put("text:roll_expression", rollExpression1);
 		this.addWidget(this.rollExpression1);
 
-		rollExpression2 = new EditBox(this.font, this.leftPos + SECONDROLL_X, this.topPos + SEPARATION*2, 118, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
+		rollExpression2 = new EditBox(this.font, this.leftPos + SECONDROLL_X, this.topPos + EXPRESSION_Y, 134, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
 			@Override
 			public void insertText(String text) {
 				super.insertText(text);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollexpression2").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_expression_suggestion2").getString());
 				else
 					setSuggestion(null);
 			}
@@ -182,22 +187,22 @@ public class AdvancedRollEditorScreen extends AbstractContainerScreen<AdvancedRo
 			public void moveCursorTo(int pos) {
 				super.moveCursorTo(pos);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollexpression2").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_expression_suggestion2").getString());
 				else
 					setSuggestion(null);
 			}
 		};
-		rollExpression2.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollexpression2").getString());
+		rollExpression2.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_expression_suggestion2").getString());
 		rollExpression2.setMaxLength(50);
 		guistate.put("text:roll_expression_2", rollExpression2);
 		this.addWidget(this.rollExpression2);
 
-		rollContext1 = new EditBox(this.font, this.leftPos + FIRSTROLL_X, this.topPos + SEPARATION, 118, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
+		rollContext1 = new EditBox(this.font, this.leftPos + FIRSTROLL_X, this.topPos + CONTEXT_Y, 134, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
 			@Override
 			public void insertText(String text) {
 				super.insertText(text);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollcontext").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_context_suggestion").getString());
 				else
 					setSuggestion(null);
 			}
@@ -206,22 +211,22 @@ public class AdvancedRollEditorScreen extends AbstractContainerScreen<AdvancedRo
 			public void moveCursorTo(int pos) {
 				super.moveCursorTo(pos);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollcontext").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_context_suggestion").getString());
 				else
 					setSuggestion(null);
 			}
 		};
-		rollContext1.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollcontext").getString());
+		rollContext1.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_context_suggestion").getString());
 		rollContext1.setMaxLength(50);
 		guistate.put("text:roll_context", rollContext1);
 		this.addWidget(this.rollContext1);
 
-		rollContext2 = new EditBox(this.font, this.leftPos + SECONDROLL_X, this.topPos + SEPARATION, 118, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
+		rollContext2 = new EditBox(this.font, this.leftPos + SECONDROLL_X, this.topPos + CONTEXT_Y, 134, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
 			@Override
 			public void insertText(String text) {
 				super.insertText(text);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollcontext2").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_context_suggestion2").getString());
 				else
 					setSuggestion(null);
 			}
@@ -230,12 +235,12 @@ public class AdvancedRollEditorScreen extends AbstractContainerScreen<AdvancedRo
 			public void moveCursorTo(int pos) {
 				super.moveCursorTo(pos);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollcontext2").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_context_suggestion2").getString());
 				else
 					setSuggestion(null);
 			}
 		};
-		rollContext2.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollcontext2").getString());
+		rollContext2.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_context_suggestion2").getString());
 		rollContext2.setMaxLength(50);
 		guistate.put("text:roll_context_2", rollContext2);
 		this.addWidget(this.rollContext2);
@@ -270,23 +275,23 @@ public class AdvancedRollEditorScreen extends AbstractContainerScreen<AdvancedRo
 		}
 
 
-		makeAdderButton("button:adder_str", FIRSTROLL_X, SEPARATION*3, 40, 20, adderButtons, rollExpression1, " + $str", "str");
-		makeAdderButton("button:adder_dex", FIRSTROLL_X + 45, SEPARATION*3, 40, 20, adderButtons, rollExpression1, " + $dex", "dex");
-		makeAdderButton("button:adder_con", FIRSTROLL_X + 90, SEPARATION*3, 40, 20, adderButtons, rollExpression1, " + $con", "con");
-		makeAdderButton("button:adder_int", FIRSTROLL_X, SEPARATION*3 + 27, 40, 20, adderButtons, rollExpression1, " + $int", "int");
-		makeAdderButton("button:adder_wis", FIRSTROLL_X + 45, SEPARATION*3 + 27, 40, 20, adderButtons, rollExpression1, " + $wis", "wis");
-		makeAdderButton("button:adder_cha", FIRSTROLL_X + 90, SEPARATION*3 + 27, 40, 20, adderButtons, rollExpression1, " + $cha", "cha");
-		makeAdderButton("button:adder_hprof", FIRSTROLL_X, SEPARATION*3 + 54, 77, 20, adderButtons, rollExpression1, " + $hprof", "hprof");
-		makeAdderButton("button:adder_prof", FIRSTROLL_X + 90, SEPARATION*3 + 54, 51, 20, adderButtons, rollExpression1, " + $prof", "prof");
+		makeAdderButton("button:adder_str", FIRSTROLL_X, BUTTONS_Y, 40, 20, adderButtons, rollExpression1, " + $str", "str");
+		makeAdderButton("button:adder_dex", FIRSTROLL_X + 47, BUTTONS_Y, 40, 20, adderButtons, rollExpression1, " + $dex", "dex");
+		makeAdderButton("button:adder_con", FIRSTROLL_X + 94, BUTTONS_Y, 40, 20, adderButtons, rollExpression1, " + $con", "con");
+		makeAdderButton("button:adder_int", FIRSTROLL_X, BUTTONS_Y + BUTTONS_SEPARATION, 40, 20, adderButtons, rollExpression1, " + $int", "int");
+		makeAdderButton("button:adder_wis", FIRSTROLL_X + 47, BUTTONS_Y + BUTTONS_SEPARATION, 40, 20, adderButtons, rollExpression1, " + $wis", "wis");
+		makeAdderButton("button:adder_cha", FIRSTROLL_X + 94, BUTTONS_Y + BUTTONS_SEPARATION, 40, 20, adderButtons, rollExpression1, " + $cha", "cha");
+		makeAdderButton("button:adder_hprof", FIRSTROLL_X, BUTTONS_Y + BUTTONS_SEPARATION*2, 77, 20, adderButtons, rollExpression1, " + $hprof", "hprof");
+		makeAdderButton("button:adder_prof", FIRSTROLL_X + 83, BUTTONS_Y + BUTTONS_SEPARATION*2, 51, 20, adderButtons, rollExpression1, " + $prof", "prof");
 
-		makeAdderButton("button:adder_str_2", SECONDROLL_X, SEPARATION*3, 40, 20, adderButtons, rollExpression2, " + $str", "str");
-		makeAdderButton("button:adder_dex_2", SECONDROLL_X + 45, SEPARATION*3, 40, 20, adderButtons, rollExpression2, " + $dex", "dex");
-		makeAdderButton("button:adder_con_2", SECONDROLL_X + 90, SEPARATION*3, 40, 20, adderButtons, rollExpression2, " + $con", "con");
-		makeAdderButton("button:adder_int_2", SECONDROLL_X, SEPARATION*3 + 27, 40, 20, adderButtons, rollExpression2, " + $int", "int");
-		makeAdderButton("button:adder_wis_2", SECONDROLL_X + 45, SEPARATION*3 + 27, 40, 20, adderButtons, rollExpression2, " + $wis", "wis");
-		makeAdderButton("button:adder_cha_2", SECONDROLL_X + 90, SEPARATION*3 + 27, 40, 20, adderButtons, rollExpression2, " + $cha", "cha");
-		makeAdderButton("button:adder_hprof_2", SECONDROLL_X, SEPARATION*3 + 54, 77, 20, adderButtons, rollExpression2, " + $hprof", "hprof");
-		makeAdderButton("button:adder_prof_2", SECONDROLL_X + 90, SEPARATION*3 + 54, 51, 20, adderButtons, rollExpression2, " + $prof", "prof");
+		makeAdderButton("button:adder_str_2", SECONDROLL_X, BUTTONS_Y, 40, 20, adderButtons, rollExpression2, " + $str", "str");
+		makeAdderButton("button:adder_dex_2", SECONDROLL_X + 47, BUTTONS_Y, 40, 20, adderButtons, rollExpression2, " + $dex", "dex");
+		makeAdderButton("button:adder_con_2", SECONDROLL_X + 94, BUTTONS_Y, 40, 20, adderButtons, rollExpression2, " + $con", "con");
+		makeAdderButton("button:adder_int_2", SECONDROLL_X, BUTTONS_Y + BUTTONS_SEPARATION, 40, 20, adderButtons, rollExpression2, " + $int", "int");
+		makeAdderButton("button:adder_wis_2", SECONDROLL_X + 47, BUTTONS_Y + BUTTONS_SEPARATION, 40, 20, adderButtons, rollExpression2, " + $wis", "wis");
+		makeAdderButton("button:adder_cha_2", SECONDROLL_X + 94, BUTTONS_Y + BUTTONS_SEPARATION, 40, 20, adderButtons, rollExpression2, " + $cha", "cha");
+		makeAdderButton("button:adder_hprof_2", SECONDROLL_X, BUTTONS_Y + BUTTONS_SEPARATION*2, 77, 20, adderButtons, rollExpression2, " + $hprof", "hprof");
+		makeAdderButton("button:adder_prof_2", SECONDROLL_X + 83, BUTTONS_Y + BUTTONS_SEPARATION*2, 51, 20, adderButtons, rollExpression2, " + $prof", "prof");
 	}
 
 	@Override

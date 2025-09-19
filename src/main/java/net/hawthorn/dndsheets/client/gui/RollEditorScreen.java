@@ -129,12 +129,12 @@ public class RollEditorScreen extends AbstractContainerScreen<RollEditorMenu> {
 		JsonObject sheet = SheetLoader.getClientSheet();
 		SheetLoader.validateSheet(sheet);
 
-		rollExpression = new EditBox(this.font, this.leftPos + X_OFFSET, this.topPos + EXPRESSION_Y, 135, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
+		rollExpression = new EditBox(this.font, this.leftPos + X_OFFSET, this.topPos + EXPRESSION_Y, 134, 18, Component.translatable("gui.dndsheets.roll_editor.rollexpression")) {
 			@Override
 			public void insertText(String text) {
 				super.insertText(text);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollexpression").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_expression_suggestion").getString());
 				else
 					setSuggestion(null);
 			}
@@ -143,12 +143,12 @@ public class RollEditorScreen extends AbstractContainerScreen<RollEditorMenu> {
 			public void moveCursorTo(int pos) {
 				super.moveCursorTo(pos);
 				if (getValue().isEmpty())
-					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollexpression").getString());
+					setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_expression_suggestion").getString());
 				else
 					setSuggestion(null);
 			}
 		};
-		rollExpression.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.rollexpression").getString());
+		rollExpression.setSuggestion(Component.translatable("gui.dndsheets.roll_editor.roll_expression_suggestion").getString());
 		rollExpression.setMaxLength(50);
 		guistate.put("text:roll_expression", rollExpression);
 		this.addWidget(this.rollExpression);

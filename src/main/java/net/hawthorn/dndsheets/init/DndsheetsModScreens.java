@@ -1,7 +1,5 @@
 
-/*
- *	MCreator note: This file will be REGENERATED on each build.
- */
+
 package net.hawthorn.dndsheets.init;
 
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;

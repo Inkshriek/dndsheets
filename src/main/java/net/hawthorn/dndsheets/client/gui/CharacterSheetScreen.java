@@ -2,6 +2,7 @@ package net.hawthorn.dndsheets.client.gui;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mojang.blaze3d.platform.InputConstants;
 import net.hawthorn.dndsheets.DndsheetsMod;
 import net.hawthorn.dndsheets.RollIndex;
 import net.hawthorn.dndsheets.SheetLoader;
@@ -237,9 +238,9 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 
 	@Override
 	public boolean keyPressed(int key, int b, int c) {
-		//if (key == 256 || FragmentsInTimeModKeyMappings.CHARACTER.isActiveAndMatches(InputConstants.getKey(key, b))) {
+		//if (key == 256 || DndsheetsModKeyMappings.CHARACTER.isActiveAndMatches(InputConstants.getKey(key, b))) {
 		if (key == 256) {
-			DndsheetsModKeyMappings.CHARACTER.consumeClick();
+			//DndsheetsModKeyMappings.CHARACTER.consumeClick();
 			this.minecraft.player.closeContainer();
 			CharacterSheetSaveProcedure.execute(guistate);
 			return true;
@@ -424,13 +425,13 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 			if (e != activeTab) {
 				e.setY(this.topPos - 12);
 				e.setHeight(15);
-				e.setImage( new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 0, 0, 15, 40, 30);
+				e.setImage( new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 0, 0, 15, 50, 30);
 				e.active = true;
 			}
 			else {
 				e.setY(this.topPos - 17);
 				e.setHeight(20);
-				e.setImage( new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton_active.png"), 0, 0, 20, 40, 40);
+				e.setImage( new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton_active.png"), 0, 0, 20, 50, 40);
 				e.active = false;
 			}
 		});
@@ -1190,21 +1191,21 @@ public class CharacterSheetScreen extends AbstractContainerScreen<CharacterSheet
 	public void init() {
 		super.init();
 
-		mainTab = new AdjustableImageButton(this.leftPos + 15, this.topPos - 12, 40, 15, 0, 0, 15, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 40, 30, e -> {
+		mainTab = new AdjustableImageButton(this.leftPos + 15, this.topPos - 12, 50, 15, 0, 0, 15, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 50, 30, e -> {
 			panelActive = PanelStatus.MAIN;
 			updateTabs();
 
 		}, Component.translatable("gui.dndsheets.character_sheet.main_tab"));
 		this.addRenderableWidget(mainTab);
 
-		skillsTab = new AdjustableImageButton(this.leftPos + 55, this.topPos - 12, 40, 15, 0, 0, 15, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 40, 30, e -> {
+		skillsTab = new AdjustableImageButton(this.leftPos + 65, this.topPos - 12, 50, 15, 0, 0, 15, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 50, 30, e -> {
 			panelActive = PanelStatus.SKILLS;
 			updateTabs();
 
 		}, Component.translatable("gui.dndsheets.character_sheet.skills_tab"));
 		this.addRenderableWidget(skillsTab);
 
-		attacksTab = new AdjustableImageButton(this.leftPos + 95, this.topPos - 12, 40, 15, 0, 0, 15, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 40, 30, e -> {
+		attacksTab = new AdjustableImageButton(this.leftPos + 115, this.topPos - 12, 50, 15, 0, 0, 15, new ResourceLocation("dndsheets:textures/screens/atlas/imagebutton_tabbutton.png"), 50, 30, e -> {
 			panelActive = PanelStatus.ATTACKS;
 			updateTabs();
 
