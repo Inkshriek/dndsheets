@@ -1,7 +1,0 @@
-{
-  "_fv": 57,
-  "_type": "procedure",
-  "definition": {
-    "procedurexml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"event_trigger\" deletable=\"false\" x=\"40\" y=\"40\"><field name=\"trigger\">no_ext_trigger</field><comment pinned=\"true\" h=\"210.5263214111328\" w=\"439.9999694824219\">This works like so:\nButton gives this procedure the property name of the roll when calling it. This procedure then brings up the Roll Editor GUI and populates it based off the data found in the current sheet (it'll get the property value, which is a string expression). The Roll Editor GUI keeps an internal memory of which property it's editing.\nThere'll be no need for a procedure when it closes, it'll simply save over the current sheet with the revised roll expression.</comment></block></xml>"
-  }
-}
